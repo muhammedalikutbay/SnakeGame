@@ -1,5 +1,4 @@
-﻿
-namespace SnakeGame
+﻿namespace SnakeGame
 {
     public class Position
     {
@@ -14,14 +13,12 @@ namespace SnakeGame
 
         public Position Translate(Direction dir)
         {
-            return new Position(Row+dir.RowOffset, Column+dir.ColumnOffset);
+            return new Position(Row + dir.RowOffset, Column + dir.ColumnOffset);
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is Position position &&
-                   Row == position.Row &&
-                   Column == position.Column;
+            return obj is Position position && Row == position.Row && Column == position.Column;
         }
 
         public override int GetHashCode()
