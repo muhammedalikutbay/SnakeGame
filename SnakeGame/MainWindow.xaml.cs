@@ -16,9 +16,35 @@ namespace SnakeGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly int rows = 15;
+        private readonly int columns = 15;
+        private readonly Image[,] gridImages;
+
         public MainWindow()
         {
             InitializeComponent();
+            gridImages = SetUpGrid();
+        }
+
+        private Image[,] SetUpGrid()
+        {
+            Image[,] images = new Image[rows, columns];
+            GameGrid.Rows = rows;
+            GameGrid.Columns = columns;
+            for (int r = 0; r < rows; r++)
+            {
+                for (int c = 0; c < columns; c++)
+                {
+                    Image image = new Image
+                    {
+                        Source = Images.Empty,
+                    };
+                    GameGrid.Children.Add(image);
+                    images[r, c] = image;
+                }
+            }
+            return images;
         }
     }
+
 }
