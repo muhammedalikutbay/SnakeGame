@@ -39,7 +39,7 @@ namespace SnakeGame
         }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GameLoop();
+            await GameLoop();
             Draw();
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -94,7 +94,7 @@ namespace SnakeGame
         private void Draw()
         {
             DrawGrid();
-
+            ScoreText.Text = $"Score: {gameState.Score}";
         }
 
         private void DrawGrid()
