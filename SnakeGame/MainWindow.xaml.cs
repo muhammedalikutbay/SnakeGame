@@ -37,8 +37,9 @@ namespace SnakeGame
             gridImages = SetUpGrid();
             gameState = new Game(rows, columns);
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            GameLoop();
             Draw();
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -93,6 +94,7 @@ namespace SnakeGame
         private void Draw()
         {
             DrawGrid();
+
         }
 
         private void DrawGrid()
