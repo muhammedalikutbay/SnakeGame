@@ -1,6 +1,6 @@
 ﻿namespace SnakeGame
 {
-    internal class Direction
+    public class Direction
     {
         public static readonly Direction Right = new Direction(0, 1);
         public static readonly Direction Left = new Direction(0, -1);
