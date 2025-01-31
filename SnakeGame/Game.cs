@@ -19,6 +19,8 @@
             Grid = new GridValue[Rows, Columns];
             Dir = Direction.Right;
             Score = 0;
+            AddSnake();
+            AddApple();
         }
 
         private void AddSnake()
