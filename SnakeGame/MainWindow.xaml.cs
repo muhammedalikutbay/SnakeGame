@@ -32,25 +32,28 @@ namespace SnakeGame
         private Game gameState;
         private bool gameRunnig;
 
-
         public MainWindow()
         {
             InitializeComponent();
             gridImages = SetUpGrid();
             gameState = new Game(rows, columns);
         }
+
         private async Task StartGame()
         {
             Draw();
             await GameStartCounter();
             GameOverOverlay.Visibility = Visibility.Hidden;
             await GameLoop();
+            await GameOver();
+            gameState = new Game(rows, columns);
         }
+
         private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (GameOverOverlay.Visibility == Visibility.Visible)
             {
-               e.Handled = true;
+                e.Handled = true;
             }
             if (!gameRunnig)
             {
@@ -59,6 +62,7 @@ namespace SnakeGame
                 gameRunnig = false;
             }
         }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (gameState.GameOver)
@@ -81,6 +85,7 @@ namespace SnakeGame
                     break;
             }
         }
+
         private async Task GameLoop()
         {
             while (!gameState.GameOver)
@@ -125,6 +130,7 @@ namespace SnakeGame
                 }
             }
         }
+
         private async Task GameStartCounter()
         {
             GameOverOverlay.Visibility = Visibility.Visible;
@@ -133,6 +139,15 @@ namespace SnakeGame
                 GameOverText.Text = i.ToString();
                 await Task.Delay(500);
             }
+            GameOverOverlay.Visibility = Visibility.Hidden;
+        }
+
+        private async Task GameOver()
+        {
+            await Task.Delay(100);
+            GameOverOverlay.Visibility = Visibility.Visible;
+            GameOverText.Text = $"Game Over\nScore: {gameState.Score}\nPress any key to restart.";
+            await Task.Delay(2000);
             GameOverOverlay.Visibility = Visibility.Hidden;
         }
     }
