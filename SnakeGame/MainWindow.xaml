@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SnakeGame"
         mc:Ignorable="d"
         Title="SnakeGame" Height="500" Width="800"
+        MinWidth="300" MinHeight="300"
         Background="{StaticResource BackgroundColor}"
         Foreground="{StaticResource TextColor}"
         FontFamily="{StaticResource MainFont}"
@@ -14,29 +15,33 @@
         Icon="Assets/icon.ico"
         Loaded="Window_Loaded"
         KeyDown="Window_KeyDown">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="ScoreText" Text="SCORE 0" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Border x:Name="GridBorder"
-                Grid.Row="1"
-                BorderBrush="{StaticResource GridLineColor}"
-                BorderThickness="1.5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                RenderOptions.EdgeMode="Aliased">
-            <UniformGrid x:Name="GameGrid" 
-                         Width="400" 
-                         Height="400" 
-                         Background="{StaticResource GridColor}"
-                         SnapsToDevicePixels="True"
-                         RenderOptions.BitmapScalingMode="HighQuality"/>
-        </Border>
-    </Grid>
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="ScoreText" Text="SCORE 0" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="GridBorder"
+                    Grid.Row="1"
+                    BorderBrush="{StaticResource GridLineColor}"
+                    BorderThickness="1.5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    RenderOptions.EdgeMode="Aliased"
+                    Margin="20,0,20,20"
+                    >
+                <UniformGrid x:Name="GameGrid" 
+                             Width="400" 
+                             Height="400" 
+                             Background="{StaticResource GridColor}"
+                             SnapsToDevicePixels="True"
+                             RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Border>
+        </Grid>
+    </Viewbox>
 </Window>
