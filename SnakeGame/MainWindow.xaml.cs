@@ -42,6 +42,7 @@ namespace SnakeGame
         private async Task StartGame()
         {
             Draw();
+            await GameStartCounter();
             GameOverOverlay.Visibility = Visibility.Hidden;
             await GameLoop();
         }
@@ -123,6 +124,16 @@ namespace SnakeGame
                     gridImages[r, c].Source = imageSources[value];
                 }
             }
+        }
+        private async Task GameStartCounter()
+        {
+            GameOverOverlay.Visibility = Visibility.Visible;
+            for (int i = 3; i > 0; i--)
+            {
+                GameOverText.Text = i.ToString();
+                await Task.Delay(500);
+            }
+            GameOverOverlay.Visibility = Visibility.Hidden;
         }
     }
 }
