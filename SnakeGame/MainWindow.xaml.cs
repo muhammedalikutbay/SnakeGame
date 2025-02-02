@@ -30,6 +30,8 @@ namespace SnakeGame
         private readonly int columns = 15;
         private readonly Image[,] gridImages;
         private Game gameState;
+        private bool gameRunnig;
+
 
         public MainWindow()
         {
@@ -37,10 +39,24 @@ namespace SnakeGame
             gridImages = SetUpGrid();
             gameState = new Game(rows, columns);
         }
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        private async Task StartGame()
         {
-            await GameLoop();
             Draw();
+            GameOverOverlay.Visibility = Visibility.Hidden;
+            await GameLoop();
+        }
+        private async void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (GameOverOverlay.Visibility == Visibility.Visible)
+            {
+               e.Handled = true;
+            }
+            if (!gameRunnig)
+            {
+                gameRunnig = true;
+                await StartGame();
+                gameRunnig = false;
+            }
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
